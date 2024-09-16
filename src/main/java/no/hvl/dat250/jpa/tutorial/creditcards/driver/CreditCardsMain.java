@@ -3,6 +3,7 @@ package no.hvl.dat250.jpa.tutorial.creditcards.driver;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import no.hvl.dat250.jpa.tutorial.creditcards.Customer;
 
 public class CreditCardsMain {
 
@@ -20,5 +21,6 @@ public class CreditCardsMain {
 
   private static void createObjects(EntityManager em) {
     // TODO: Create object world as shown in the README.md.
+
   }
 }

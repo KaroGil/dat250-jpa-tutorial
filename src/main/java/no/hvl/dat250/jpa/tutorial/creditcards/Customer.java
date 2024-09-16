@@ -8,19 +8,21 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
+
+    @ManyToMany
+    private Collection<Address> adress;
+    private Collection<CreditCard> creditCard;
 
     public String getName() {
-        // TODO: implement method!
-        return null;
+        return name;
     }
 
     public Collection<Address> getAddresses() {
-        // TODO: implement method!
-        return null;
+        return adress;
     }
 
     public Collection<CreditCard> getCreditCards() {
-        // TODO: implement method!
-        return null;
+        return creditCard;
     }
 }

@@ -20,7 +20,7 @@ public class CreditCard {
     private Bank owner;
 
 
-    @ManyToMany
+    @ManyToOne
     private Customer customer;
 
     public Integer getNumber() {

@@ -24,54 +24,60 @@ public class CreditCardsMain {
   }
 
   private static void createObjects(EntityManager em) {
-   // Create Address
-   Address address = new Address();
-   address.setStreet("Inndalsveien");
-   address.setNumber(28);
+    // Create Customer
+    Customer customer = new Customer();
+    customer.setName("Max Mustermann");
 
-   // Create Customer
-   Customer customer = new Customer();
-   customer.setName("Max Mustermann");
-   customer.addAddress(address);
+    // Create Address
+    Address address = new Address();
+    address.setStreet("Inndalsveien");
+    address.setNumber(28);
+    address.addOwner(customer);
 
-   address.addOwner(customer);
+    customer.addAddress(address);
 
-   // Create Bank
-   Bank bank = new Bank();
-   bank.setName("Pengebank");
+    // Create first Pincode for card1
+    Pincode pincode = new Pincode();
+    pincode.setCode("123");
+    pincode.setCount(1);
 
-   // Create CreditCard 1
-   CreditCard card1 = new CreditCard();
-   card1.setNumber(12345);
-   card1.setBalance(-5000);
-   card1.setCreditLimit(10000);
-   card1.setCustomer(customer);
-   card1.setOwningBank(bank);
+    // Create first CreditCard
+    CreditCard card1 = new CreditCard();
+    card1.setNumber(12345);
+    card1.setBalance(-5000);
+    card1.setCreditLimit(-10000);
+    card1.setPincode(pincode);
+    card1.setCustomer(customer);
 
-   // Create Pincode 1
-   Pincode pin1 = new Pincode();
-   pin1.setCode("123");
-   pin1.setCount(1);
-   card1.setPincode(pin1);
+    // Create second CreditCard
+    CreditCard card2 = new CreditCard();
+    card2.setNumber(123);
+    card2.setBalance(1);
+    card2.setCreditLimit(2000);
+    card2.setPincode(pincode);
+    card2.setCustomer(customer);
 
-   // Create CreditCard 2
-   CreditCard card2 = new CreditCard();
-   card2.setNumber(123);
-   card2.setBalance(1);
-   card2.setCreditLimit(2000);
-   card2.setCustomer(customer);
-   card2.setOwningBank(bank);
+    // Create Bank
+    Bank bank = new Bank();
+    bank.setName("Pengebank");
 
-   // Create Pincode 2
-   Pincode pin2 = new Pincode();
-   pin2.setCode("123");
-   pin2.setCount(1);
-   card2.setPincode(pin2);
+    card1.setOwningBank(bank);
+    card2.setOwningBank(bank);
 
-   // Persist all objects
-   em.persist(customer);
-   em.persist(bank);
-   em.persist(card1);
-   em.persist(card2);
+    // Add the credit cards to the bank
+    bank.addOwnedCard(card1);
+    bank.addOwnedCard(card2);
+
+    // Add the credit cards to the customer
+    customer.addCreditCard(card1);
+    customer.addCreditCard(card2);
+
+    // Persist the objects
+    em.persist(customer);
+    em.persist(address);
+    em.persist(pincode);
+    em.persist(card1);
+    em.persist(card2);
+    em.persist(bank);
   }
 }

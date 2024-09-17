@@ -17,6 +17,23 @@ https://github.com/KaroGil/dat250-jpa-tutorial/tree/master/src/main/java/no/hvl/
 
 ### An explanation of how you inspected the database tables and what tables were created. For the latter, you may provide screenshots.
 
+### Questions:
+
+#### Explain the used database and how/when it runs.
+
+The database used in this experiment runs by using H2 relational database for testing purposes. It is initialized when the application starts or when JPA operations are initialized (persisting entities).
+
+#### Can you provide the SQL used to create the table Customer?
+
+´´´
+CREATE TABLE Customer (
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255)
+);
+´´´
+
+#### Find a way to inspect the database tables being created and create a database schema in your report. Do the created tables correspond to your initial thoughts regarding the exercise?
+
 ### Any pending issues with this assignment that you did not manage to solve
 
 There aren´t any pending issues.
